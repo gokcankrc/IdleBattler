@@ -562,6 +562,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Razor
       objectReference: {fileID: 0}
+    - target: {fileID: 2663153387834482856, guid: 6e87309db0a9ad744af49b17426c1663,
+        type: 3}
+      propertyPath: attackType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2663153387834482857, guid: 6e87309db0a9ad744af49b17426c1663,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -615,6 +620,16 @@ PrefabInstance:
     - target: {fileID: 2663153387834482857, guid: 6e87309db0a9ad744af49b17426c1663,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663153387834482859, guid: 6e87309db0a9ad744af49b17426c1663,
+        type: 3}
+      propertyPath: _castingRemainingSec
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663153387834482859, guid: 6e87309db0a9ad744af49b17426c1663,
+        type: 3}
+      propertyPath: _castingMax
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

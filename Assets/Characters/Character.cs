@@ -25,7 +25,12 @@ public class Character : MonoBehaviour
     private Attack _attack;
     private Skill _skill;
     private Ultimate _ultimate;
-
+    
+    // todo; method variables that stay there? I could just send the castingMax and method would do things in itself
+    [MyReadOnly] [SerializeField] private Ability _currentCastingAbility;
+    [MyReadOnly] [SerializeField] private float _castingRemainingSec;
+    [MyReadOnly] [SerializeField] private float _castingMax;  // To draw GUI
+    
     private void Awake()
     {
         Stats = GetComponent<Stats>();
@@ -73,6 +78,7 @@ public class Character : MonoBehaviour
         get
         {
             // ORDER MATTERS
+            // creates array each time
             Ability[] abilities = {_ultimate, _skill, _attack};
             return abilities;
         }
@@ -125,13 +131,9 @@ public class Character : MonoBehaviour
         _castingRemainingSec = _castingMax;
     }
     
-    private void Die()
+    private void OnHealthBelowZero()
     {
-        state = CharacterState.Dead;
-        
-        // remove from bg
-        BattleGround.I.RemoveCharacterFromBg(this);
-        myCharacterSprite.color = Color.red;
+        Die();
     }
 
     private void Revive()
@@ -141,12 +143,7 @@ public class Character : MonoBehaviour
         BattleGround.I.AddCharacterToBg(this);
         myCharacterSprite.color = Color.white;
     }
-    
-    // todo; method variables that stay there? I could just send the castingMax and method would do things in itself
-    [SerializeField] private Ability _currentCastingAbility;
-    [SerializeField] private float _castingRemainingSec;
-    [SerializeField] private float _castingMax;  // To draw GUI
-    
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -155,9 +152,10 @@ public class Character : MonoBehaviour
         void IdleUpdate()
         {
             AbilityCooldownsTick();
+            
             if (Stats.health < 0)
             {
-                Die();
+                OnHealthBelowZero();
                 return;
             }
             AbilityCastAnyReady();
@@ -181,7 +179,7 @@ public class Character : MonoBehaviour
 
             if (Stats.health < 0)
             {
-                Die();
+                OnHealthBelowZero();
                 return;
             }
 
@@ -207,5 +205,12 @@ public class Character : MonoBehaviour
         }
     }
 
-
+    private void Die()
+    {
+        state = CharacterState.Dead;
+        
+        // remove from bg
+        BattleGround.I.RemoveCharacterFromBg(this);
+        myCharacterSprite.color = Color.red;
+    }
 }

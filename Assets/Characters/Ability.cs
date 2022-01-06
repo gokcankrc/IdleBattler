@@ -8,6 +8,7 @@ public enum TargetTypes
     Self, 
     EnemyFrontArea, EnemyFrontRandom, EnemyBack, EnemyBackRandom, EnemyAll, EnemyAllRandom,
     AllyFrontArea, AllyFrontRandom, AllyBack, AllyBackRandom, AllyAll, AllyAllRandom
+    ,error123213
 }
 
 public enum AttackTypes

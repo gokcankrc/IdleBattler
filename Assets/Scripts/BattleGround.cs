@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class BattleGround : Singleton<BattleGround>
 {
@@ -27,6 +28,11 @@ public class BattleGround : Singleton<BattleGround>
             everyCharacters.AddRange(_enemySideCharacters);
             return everyCharacters;
         }
+    }
+
+    private void Start()
+    {
+        GetTargets(TargetTypes.error123213, "right");
     }
 
     private static readonly System.Random Rnd = new System.Random();
@@ -171,6 +177,7 @@ public class BattleGround : Singleton<BattleGround>
             default:
                 // If code reaches here, there is an unhandled target in the code above.
                 throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                Debug.Assert(true);
         }
         
         // if target is random, randomly pick one from the list.
